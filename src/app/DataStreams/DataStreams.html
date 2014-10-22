@@ -1,1 +1,12 @@
-<div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <span ng-repeat="datasource in datasources">
+                <input type="checkbox" ng-checked="datasource.subscribed" ng-click="datasourceClick(datasource)" />{{datasource.Name}}<br />
+            </span>
+        </div>
+        <div class="col-md-9">
+            <div id="chart" style="margin: 0 auto"></div>
+        </div>
+    </div>
+</div>

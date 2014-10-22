@@ -1,3 +1,5 @@
+'use strict';
+
 mfxApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.

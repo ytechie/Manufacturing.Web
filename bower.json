@@ -2,10 +2,9 @@
   "name": "manufacturingWeb",
   "version": "0.0.0",
   "dependencies": {
-    "modernizr": "2.8.x",
-    "angular": "1.2.x",
-    "bootstrap-sass-official": "3.2.x",
+    "signalr": "~2.1.2",
     "highcharts-release": "~4.0.4",
+    "angular-latest": "~1.3.0",
     "angular-routing": "~0.1.2"
   },
   "devDependencies": {
@@ -14,5 +13,18 @@
   "resolutions": {
     "angular": "1.2.x",
     "modernizr": "2.8.x"
-  }
+  },
+  "homepage": "https://github.com/ytechie/Manufacturing.Web",
+  "authors": [
+    "Jason Young <jason@ytechie.com>"
+  ],
+  "license": "Apache-2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ]
 }
