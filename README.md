@@ -3,7 +3,7 @@ Manufacturing.Web
 
 An Angular.js application that interfaces with the manufacturing API via REST and SignalR to interact with the system.
 
-![Real-Time Data Stream](screenshot.png)
+![Real-Time Data Stream](screenshot.gif)
 
 
 # License
