@@ -27,6 +27,8 @@ function wireUpServerEvents(server, $scope) {
 
 function serverConnected(server) {
     console.log('Starting alarm stream');
-    
+
+    var alarmsHub = server.alarmsHub;
+
     alarmsHub.server.start();
 }
