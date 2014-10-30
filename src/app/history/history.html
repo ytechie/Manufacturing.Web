@@ -1,0 +1,38 @@
+﻿<div class="container">
+    <form role="form">
+       
+        <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" class="form-control" id="startDate" ng-model="startDate"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="endDate">End Date</label>
+            <input type="date" class="form-control" id="endDate" ng-model="endDate" />
+        </div>
+        
+        <!-- This isn't hooked up yet... -->
+        <div class="form-group">
+            <label for="aggregation">Aggregation</label><br />
+            <div class="btn-group" id="aggregation">
+                <button type="button" class="btn btn-default">Hour</button>
+                <button type="button" class="btn btn-default">Day</button>
+                <button type="button" class="btn btn-default">Month</button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default btn-primary" ng-click="parameterUpdate()">Submit</button>
+    </form>
+    
+
+    <table class="table table-bordered" style="margin-top: 40px;">
+        <tr>
+            <th>Timestamp</th>
+            <th>Value</th>
+        </tr>
+        <tr ng-repeat="value in history">
+            <td>{{value.Timestamp}}</td>
+            <td>{{value.Value}}</td>
+        </tr>
+    </table>
+</div>

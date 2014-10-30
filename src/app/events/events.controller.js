@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('manufacturingWeb')
-    .controller('DataStreams', [
-        '$scope', '$http', 'config', function ($scope, $http, config) {
+    .controller('events', [
+        '$scope', '$http', 'config', 'liveServer', function ($scope, $http, config, liveServer) {
             initChart();
 
             if (!config.apiUrl) {
@@ -11,19 +11,17 @@ angular.module('manufacturingWeb')
             }
 
             $scope.datasourceClick = function (datasource) {
-                toggleSeries(datasource);
-
+                toggleSeries(datasource, liveServer);
             };
 
-            startSignalR(config.apiUrl);
+            startSignalR(liveServer);
             loadDatasourceList($scope, $http, config.apiUrl);
         }
     ]);
 
 var chart;
-var dsHub;
 
-function toggleSeries(datasource) {
+function toggleSeries(datasource, liveServer) {
     datasource.subscribed = !datasource.subscribed;
 
     if (datasource.subscribed) {
@@ -36,46 +34,34 @@ function toggleSeries(datasource) {
             }
         });
 
-        dsHub.server.register(datasource.Id);
+        liveServer.eventsHub.server.register(datasource.Id);
         console.log('Subscribed for updates to datasource ' + datasource.Id);
     } else {
         var series = chart.get(datasource.Id);
         series.remove();
 
-        dsHub.server.unregister(datasource.Id);
+        liveServer.eventsHub.server.unregister(datasource.Id);
         console.log('Unsubscribed for updates to datasource ' + datasource.Id);
     }
 }
 
-function startSignalR(apiUrl) {
-    var oversized;
-    var series;
+function startSignalR(liveServer) {
+    liveServer.connect(function() {
+        var oversized;
+        var series;
 
-    $.connection.hub.url = apiUrl + '/signalr';
+        var eventsHub = liveServer.eventsHub;
 
-    dsHub = $.connection.DatasourceRecord;
-    var recordsReceived = 0;
-    dsHub.client.newRecord = function (record) {
-        recordsReceived++;
-        console.log('Total Records Received: ' + recordsReceived);
-
-        series = chart.get(record.DatasourceId);
-        if (series) {
-            oversized = series.data.length >= 20;
-            series.addPoint({
-                y: record.Value
-            }, true, oversized);
-        }
-    };
-
-    console.log('Connecting to SignalR hub');
-    $.connection.hub.start().done(function () {
-        console.log('Connected to SignalR');
-    }).fail(function () {
-        console.log('Failed to connect to SignalR hub');
+        eventsHub.client.newRecord = function(record) {
+            series = chart.get(record.DatasourceId);
+            if (series) {
+                oversized = series.data.length >= 20;
+                series.addPoint({
+                    y: record.Value
+                }, true, oversized);
+            }
+        };
     });
-
-
 }
 
 function initChart() {
@@ -100,9 +86,9 @@ function initChart() {
 }
 
 function loadDatasourceList($scope, $http, apiUrl) {
-    var datasourcesUrl = apiUrl + '/api/datasourceconfiguration';
+    var datasourcesUrl = apiUrl + '/api/eventConfigurations';
     console.log('Loading datasources from ' + datasourcesUrl);
-    $http.get(apiUrl + '/api/datasourceconfiguration')
+    $http.get(apiUrl + '/api/eventConfigurations')
         .success(function (results) {
             $scope.datasources = results;
         });

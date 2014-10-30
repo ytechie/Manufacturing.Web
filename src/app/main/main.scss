@@ -12,3 +12,23 @@
     width: 50px;
   }
 }
+
+.alarms.ng-move,
+.alarms.ng-enter{
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.alarms.ng-leave.ng-leave-active,
+.alarms.ng-move,
+.alarms.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.alarms.ng-leave,
+.alarms.ng-move.ng-move-active,
+.alarms.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height:40px;
+}

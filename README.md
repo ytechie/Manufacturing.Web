@@ -5,6 +5,17 @@ An Angular.js application that interfaces with the manufacturing API via REST an
 
 ![Real-Time Data Stream](screenshot.gif)
 
+### Install
+
+1. Open a git/poshgit command prompt in the project directory
+1. Run `npm install`
+1. Run `bower install`
+1. Modify the server URL in `/src/app/history/history.controller.js`
+1. Modify the server URL in `/src/app/liveServer.js`
+
+### Running
+
+From a command line in the folder where this project resides, run `gulp serve` to run.
 
 # License
 

@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('manufacturingWeb')
-  .controller('MainCtrl', [],
-    function () {
-
-});
+    .controller('main', [
+        '$scope',
+        function($scope) {
+            $scope.now = new Date();
+        }
+    ]);

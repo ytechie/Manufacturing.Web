@@ -1,0 +1,13 @@
+﻿<div class="container">
+    Alarm Filter: <input type="search" ng-model="filter" placeholder="filter..." />
+    <table class="table table-bordered">
+        <tr>
+            <th>Timestamp</th>
+            <th>Alarm Message</th>
+        </tr>
+        <tr class="alarms" ng-repeat="alarm in alarms | filter:filter">
+            <td>{{alarm.Timestamp}}</td>
+            <td>{{alarm.Message}}</td>
+        </tr>
+    </table>
+</div>

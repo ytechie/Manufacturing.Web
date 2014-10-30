@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="no-js" ng-app="manufacturingWeb">
   <head>
     <meta charset="utf-8">
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="app/main/vendor.css">
 
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -43,6 +44,8 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-routing/angular-routing.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -50,20 +53,24 @@
     <script src="app/manufacturingWeb.js"></script>
     <script src="app/routing.js"></script>
     <script src="app/main/main.controller.js"></script>
-    <script src="app/DataStreams/DataStreams.controller.js"></script>
+      <script src="app/events/events.controller.js"></script>
+      <script src="app/alarms/alarms.controller.js"></script>
+      <script src="app/history/history.controller.js"></script>
+      
+      <script src="app/liveServer.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       
       <script src="bower_components/signalr/jquery.signalR.js"></script>
-      <script src="//localhost:3184/signalr/hubs"></script>
-      <script src="//mfxapi.azurewebsites.net/signalr/hubs"></script>
+      <script src="//localhost:16683/signalr/hubs"></script>
+      <!--<script src="//mfxapi.azurewebsites.net/signalr/hubs"></script>-->
       
       <script>
           //var configModule = angular.module('config', []);
 
           angular.module('manufacturingWeb').factory('config', function () {
               return {
-                  apiUrl: "http://mfxapi.azurewebsites.net"
-                  //apiUrl: "http://localhost:3184"
+                  //apiUrl: "http://mfxapi.azurewebsites.net"
+                  apiUrl: "http://localhost:16683"
               }
           });
 
