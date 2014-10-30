@@ -1,6 +1,6 @@
 'use strict';
 
-mfxApp.config([
+angular.module('manufacturingWeb').config([
     '$routeProvider',
     function($routeProvider) {
         $routeProvider.
