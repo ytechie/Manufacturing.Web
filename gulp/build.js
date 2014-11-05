@@ -21,10 +21,10 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src('src/{app,components}/**/*.js')
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.size());
+    return gulp.src('src/{app,components}/**/*.js')
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish'));
+    //.pipe($.size());
 });
 
 gulp.task('partials', function () {
@@ -57,8 +57,8 @@ gulp.task('html', ['styles', 'scripts', 'partials'], function () {
     .pipe(assets = $.useref.assets())
     .pipe($.rev())
     .pipe(jsFilter)
-    .pipe($.ngAnnotate())
-    .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
+    //.pipe($.ngAnnotate())
+    //.pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
     .pipe($.replace('bower_components/bootstrap-sass-official/assets/fonts/bootstrap','fonts'))
