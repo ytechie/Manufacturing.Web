@@ -1,8 +1,6 @@
-﻿angular.module('manufacturingWeb').factory('liveServer', function() {
+﻿angular.module('manufacturingWeb').factory('liveServer', ['config', function(config) {
     var factory = {};
 
-    factory.apiUrl = "http://opcgate.azurewebsites.net";
-    //factory.apiUrl = "http://localhost:16683";
     factory.connection = null;
     factory.connect = function(serverEventsCallback, connectedCallback) {
         disconnectIfConnected(function() {
@@ -31,7 +29,7 @@
     }
 
     function connect(serverEventsCallback, connectedCallback) {
-        $.connection.hub.url = factory.apiUrl + '/signalr';
+        $.connection.hub.url = config.apiUrl + '/signalr';
 
         console.log('Attempting signalr connection to ' + $.connection.hub.url);
 
@@ -54,4 +52,4 @@
             console.log('Failed to connect to SignalR hub');
         });
     }
-});
+}]);
