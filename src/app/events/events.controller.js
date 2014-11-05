@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('manufacturingWeb')
     .controller('events', [
         '$scope', '$http', 'config', 'liveServer', function ($scope, $http, config, liveServer) {

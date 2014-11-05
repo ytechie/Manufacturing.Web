@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('manufacturingWeb')
     .controller('main', [
         '$scope',
