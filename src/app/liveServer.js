@@ -1,14 +1,15 @@
 ﻿angular.module('manufacturingWeb').factory('liveServer', function() {
     var factory = {};
 
-    factory.apiUrl = "http://localhost:16683";
+    factory.apiUrl = "http://opcgate.azurewebsites.net";
+    //factory.apiUrl = "http://localhost:16683";
     factory.connection = null;
-    factory.connect = function (serverEventsCallback, connectedCallback) {
+    factory.connect = function(serverEventsCallback, connectedCallback) {
         disconnectIfConnected(function() {
             connect(serverEventsCallback, connectedCallback);
         });
     }
-    
+
     return factory;
 
     function disconnectIfConnected(callback) {
@@ -42,7 +43,7 @@
         }
 
         console.log('Connecting to SignalR hub');
-        $.connection.hub.start().done(function () {
+        $.connection.hub.start().done(function() {
             console.log('Connected to SignalR');
             factory.connection = $.connection;
 
@@ -51,6 +52,6 @@
             }
         }).fail(function() {
             console.log('Failed to connect to SignalR hub');
-        });        
+        });
     }
 });
