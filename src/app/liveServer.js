@@ -7,6 +7,8 @@
             connect(serverEventsCallback, connectedCallback);
         });
     }
+    factory.online = null;
+    factory.offline = null;
 
     return factory;
 
@@ -36,6 +38,10 @@
         factory.dataHub = $.connection.DatasourceRecord;
         factory.alarmsHub = $.connection.Alarms;
 
+        if (!factory.dataHub) {
+            alert('Unable to load the signlR client script, please make sure "' + $.connection.hub.url + '" is accessible');
+        }
+
         if (serverEventsCallback) {
             serverEventsCallback();
         }
@@ -48,8 +54,27 @@
             if (connectedCallback) {
                 connectedCallback();
             }
+            if (factory.online) {
+                factory.online();
+            }
         }).fail(function() {
             console.log('Failed to connect to SignalR hub');
+
+
+        });
+
+        $.connection.hub.stateChanged(function (cfg) {
+            //{ 0: 'connecting', 1: 'connected', 2: 'reconnecting', 4: 'disconnected' };
+
+            if (cfg.newState == 1) {
+                if (factory.online) {
+                    factory.online();
+                }
+            } else {
+                if (factory.offline) {
+                    factory.offline();
+                }
+            }
         });
     }
 }]);
