@@ -1,6 +1,6 @@
 angular.module('manufacturingWeb')
     .controller('NavbarCtrl', [
-        '$scope', 'liveServer', function($scope, liveServer) {
+        '$scope', '$location', 'liveServer', function($scope, $location, liveServer) {
             $scope.date = new Date();
 
             liveServer.online = function() {
@@ -11,5 +11,9 @@ angular.module('manufacturingWeb')
                 $scope.online = false;
                 $scope.$apply();
             }
+
+            $scope.isActive = function (viewLocation) {
+                return viewLocation === $location.path();
+            };
         }
     ]);
