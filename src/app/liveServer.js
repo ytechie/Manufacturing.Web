@@ -33,7 +33,7 @@
 
         console.log('Attempting signalr connection to ' + $.connection.hub.url);
 
-        factory.eventsHub = $.connection.Events;
+        factory.dataHub = $.connection.DatasourceRecord;
         factory.alarmsHub = $.connection.Alarms;
 
         if (serverEventsCallback) {

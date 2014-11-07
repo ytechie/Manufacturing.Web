@@ -32,13 +32,13 @@ function toggleSeries(datasource, liveServer) {
             }
         });
 
-        liveServer.eventsHub.server.register(datasource.Id);
+        liveServer.dataHub.server.register(datasource.Id);
         console.log('Subscribed for updates to datasource ' + datasource.Id);
     } else {
         var series = chart.get(datasource.Id);
         series.remove();
 
-        liveServer.eventsHub.server.unregister(datasource.Id);
+        liveServer.dataHub.server.unregister(datasource.Id);
         console.log('Unsubscribed for updates to datasource ' + datasource.Id);
     }
 }
@@ -48,9 +48,9 @@ function startSignalR(liveServer) {
         var oversized;
         var series;
 
-        var eventsHub = liveServer.eventsHub;
+        var dataHub = liveServer.dataHub;
 
-        eventsHub.client.newRecord = function(record) {
+        dataHub.client.newRecord = function (record) {
             series = chart.get(record.DatasourceId);
             if (series) {
                 oversized = series.data.length >= 20;
@@ -84,9 +84,9 @@ function initChart() {
 }
 
 function loadDatasourceList($scope, $http, apiUrl) {
-    var datasourcesUrl = apiUrl + '/api/eventConfigurations';
+    var datasourcesUrl = apiUrl + '/api/datasourceconfiguration';
     console.log('Loading datasources from ' + datasourcesUrl);
-    $http.get(apiUrl + '/api/eventConfigurations')
+    $http.get(datasourcesUrl)
         .success(function (results) {
             $scope.datasources = results;
         });
