@@ -1,7 +1,8 @@
 {
   "name": "manufacturingWeb",
   "version": "0.0.0",
-  "dependencies": {},
+    "dependencies": { },
+    "repository": "http://bing.com",
   "devDependencies": {
     "bower": "^1.3.12",
     "browser-sync": "^1.3.6",
