@@ -3,7 +3,11 @@ Manufacturing.Web
 
 An Angular.js application that interfaces with the manufacturing API via REST and SignalR to interact with the system.
 
-![Real-Time Data Stream](screenshot.gif)
+![Command Line Generating Data](readme-assets/commandline-animated.gif)
+
+Real-time data pushed to Event Hubs can be displayed through this web project.
+
+![Real-time event display](readme-assets/chart-animated.gif)
 
 ### Install
 
