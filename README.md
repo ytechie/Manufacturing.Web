@@ -11,22 +11,18 @@ Real-time data pushed to Event Hubs can be displayed through this web project.
 
 ### Install
 
-1. Open a git/poshgit command prompt in the project directory
-1. Run `npm install`
-	* Note: If you receive an error that looks like `Error: ENOENT, stat 'c:\users\you\AppData\Roaming\npm`, you should create that folder manually and make sure it's in your path.
-1. Run `npm install -g bower`
-1. Run `bower install`
-1. Run `npm install gulp -g`
-1. Modify the server URL in `/src/app/history/history.controller.js`
-1. Verify the URL in `/src/app/manufacturingWeb.js` points to a valid, running server. The serve is located in the [Manufacturing.Api](https://github.com/ytechie/Manufacturing.Api) repository.
+1. Ensure that you have [Node/npm](http://nodejs.org/) installed.
+2. Run `install.bat` to install the prerequisites.
+
+### Run
+
+1. Start the WebAPI project, which is is the server for the front-end.
+1. Run `run.bat` to run the web front-end locally.
 
 ### Troubleshooting
 
-I've found that npm global installs can fail when installed with Chocolatey. My solution was to uninstall them with Chocolatey, and clean up the exe's in `C:\ProgramData\chocolatey\bin`. Then, install Node with the [standard installer](http://nodejs.org/).
-
-### Running
-
-From a command line in the folder where this project resides, run `gulp serve` to run.
+* I've found that npm global installs can fail when installed with Chocolatey. My solution was to uninstall them with Chocolatey, and clean up the exe's in `C:\ProgramData\chocolatey\bin`. Then, install Node with the [standard installer](http://nodejs.org/).
+* If you host the backend on a different computer than the frontend, you'll need to update the server URL in `/src/app/history/history.controller.js`.
 
 # License
 
