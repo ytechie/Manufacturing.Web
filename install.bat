@@ -1,5 +1,7 @@
 @echo off
 
+echo Please make sure you have node/npm installed. You'll get some interesting errors if that's not the case. :-)
+
 echo Installing prerequisites...
 call npm install
 
